@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="INSERV" targetNamespace="http://INSERV" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://INSERV" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="INSERVHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="INSERV_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://INSERV" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="INSERV_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="operation1RequestMsg">
+    <wsdl:part element="tns:operation1" name="operation1Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="operation1ResponseMsg">
+    <wsdl:part element="tns:operation1Response" name="operation1Result"/>
+  </wsdl:message>
+  <wsdl:portType name="INSERV">
+    <wsdl:operation name="operation1">
+            <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
+            <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="INSERVHttpBinding" type="tns:INSERV">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="operation1">
+            <soap:operation soapAction="http://INSERV/operation1"/>
+            <wsdl:input name="operation1Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="operation1Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="INSERVHttpService">
+    <wsdl:port binding="tns:INSERVHttpBinding" name="INSERVHttpPort">
+      <soap:address location="http://localhost:7800/INSERV"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
