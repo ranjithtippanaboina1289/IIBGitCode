@@ -1,0 +1,22 @@
+
+
+Importing file: C:\New_work_space\SOAP_TAX\tx.wsdl
+
+The WSDL import will proceed with bindings txSOAP.
+Creating wsdl schema document for file:///C:/New_work_space/SOAP_TAX/tx.wsdl.
+Parsing wsdl binding {http://www.example.org/tx/}txSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema tx.xsd.
+Creating file tx.xsd in the workspace.
+Creating file tx_InlineSchema1.xsd in the workspace.
+Copying source WSDL tx.wsdl to tx.wsdl.
+
+Elapsed time processing this message definition file: 0.893 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+
