@@ -1,0 +1,26 @@
+
+
+CREATE COMPUTE MODULE TAX_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+	DECLARE ref REFERENCE TO InputRoot.DFDL.mytax.record;
+	
+	
+	
+		SET OutputRoot.JSON.Data.indexx =ref.field1;
+		SET OutputRoot.JSON.Data.itemm = ref.field2;
+		SET OutputRoot.JSON.Data.cost =ref.field3;
+		SET OutputRoot.JSON.Data.tax=ref.field4;
+		SET OutputRoot.JSON.Data.total=ref.field5;
+		
+		INSERT INTO Database.TAXABLE(Indexx,Itemm,Cost,Tax,Total )VALUES(ref.field1,ref.field2,ref.field3,ref.field4,ref.field5);
+	END;
+END MODULE;
