@@ -1,0 +1,20 @@
+
+
+CREATE COMPUTE MODULE XSD_VAl_SUB_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		SET OutputRoot.XMLNSC.ns:Document."admi.002.001.01".RltdRef.Ref = '001R201153230017';
+		SET OutputRoot.XMLNSC.ns:Document."admi.002.001.01".Rsn.RjctgPtyRsn= 'SC312';
+		SET OutputRoot.XMLNSC.ns:Document."admi.002.001.01".Rsn.RjctnDtTm= '2016-03-21T11:40:47';
+		SET OutputRoot.XMLNSC.ns:Document."admi.002.001.01".Rsn.RsnDesc= 'Invalid signature of Document';
+		SET OutputRoot.XMLNSC.ns:Document."admi.002.001.01".Rsn.AddtlData= '';
+		
+	END;
+END MODULE;
