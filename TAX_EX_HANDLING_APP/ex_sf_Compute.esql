@@ -1,0 +1,50 @@
+
+
+CREATE COMPUTE MODULE ex_sf_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+--		DECLARE ref REFERENCE TO InputExceptionList.*[1];
+--	While LASTMOVE (ref) DO
+--		IF ref.Number IS NOT NULL THEN
+--			
+--	    SET OutputRoot.XMLNSC.Exception_Detials.Text = ref.Text;
+--	    SET OutputRoot.XMLNSC.Exception_Detials.Number = ref.Number;
+--	    SET OutputRoot.XMLNSC.Exception_Detials.Type = ref.Type;
+--	    
+--		END IF;
+--		MOVE ref LASTCHILD;
+--	END WHILE;
+		DECLARE ref REFERENCE TO InputExceptionList.*[1];
+DECLARE File CHARACTER;
+      DECLARE Line CHARACTER;
+      DECLARE Type CHARACTER;
+      DECLARE Label CHARACTER;
+      DECLARE Number INTEGER; 
+      DECLARE Text CHARACTER;
+      DECLARE tstamp CHARACTER; 	
+     SET tstamp=CURRENT_TIMESTAMP;
+        WHILE  LASTMOVE (ref) DO
+	    MOVE ref LASTCHILD;
+	    IF ref.Number is not null THEN
+        SET File=ref.File;
+        SET Line=ref.Line;
+        SET Type=ref.Type;	
+        SET Label=ref.Label;
+        SET Number=ref.Number;
+        SET Text =ref.Text;
+	    END IF;
+		ENd while;
+		CALL TAX_ERROR_PROCEDURE(File,Line,Type,Label,Number,Text,tstamp);
+	END;
+END MODULE;
+CREATE PROCEDURE TAX_ERROR_PROCEDURE(IN File CHARACTER,IN Line CHARACTER,IN Type CHARACTER,IN Label CHARACTER,IN Number INTEGER,IN Text CHARACTER,IN tstamp CHARACTER)
+LANGUAGE DATABASE
+EXTERNAL NAME "TAX_ERROR_PROC";
