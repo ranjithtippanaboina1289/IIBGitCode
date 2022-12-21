@@ -1,0 +1,32 @@
+BROKER SCHEMA com.eidiko.training
+
+
+CREATE COMPUTE MODULE GatherComplete_MF1_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE sch_col REFERENCE TO InputRoot.ComIbmGroupCompleteNode.Group.Replies.GSTR[1];
+		WHILE(LASTMOVE(sch_col)) DO
+			SET OutputRoot.XMLNSC.Item[I]=sch_col.Reply.Root.XMLNSC;
+			SET I=I+1;
+			MOVE sch_col NEXTSIBLING;
+		END WHILE;
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
