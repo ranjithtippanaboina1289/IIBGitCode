@@ -1,0 +1,28 @@
+
+
+CREATE COMPUTE MODULE Taxable_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.JSON.Data.Records = InputRoot.DFDL;
+		DECLARE inref REFERENCE TO OutputRoot.JSON.Data.Records;
+		DECLARE index,itemm,cost,tax,total CHARACTER;
+		SET index = inref.index;
+		SET itemm = inref.itemm;
+		SET cost = inref.cost;
+		SET tax = inref.tax;
+		SET total = inref.total;
+		
+		CALL my_db_pro(index,itemm,cost,tax,total);
+	END;
+END MODULE;
+CREATE PROCEDURE my_db_pro(IN index CHARACTER,IN itemm CHARACTER,IN cost CHARACTER,IN tax CHARACTER,IN total CHARACTER )
+LANGUAGE DATABASE
+EXTERNAL NAME "TAXABLE_PROC";
+
