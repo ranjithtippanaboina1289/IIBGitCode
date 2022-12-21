@@ -1,0 +1,26 @@
+
+
+CREATE COMPUTE MODULE INS_UPD_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inRef REFERENCE TO InputRoot.XMLNSC.Student;
+		DECLARE id,name,branch,city CHARACTER;
+		
+		SET id=inRef.ID;
+		SET name=inRef.NAME;
+		SET branch=inRef.BRANCH;
+		SET city=inRef.CITY;
+		DECLARE Query CHARACTER 'select * from STUDENT';
+		SET Environment.variable.arrayList.item[]=PASSTHRU(Query.RANDB);
+		SET OutputRoot.JSON.Data.list[1]=Environment.variable.arrayList;
+		
+		
+	END;
+END MODULE;
