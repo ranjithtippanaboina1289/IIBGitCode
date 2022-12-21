@@ -1,0 +1,22 @@
+
+
+Importing file: C:\New_work_space\TAX_SOAP\dbtax.wsdl
+
+The WSDL import will proceed with bindings dbtaxSOAP.
+Creating wsdl schema document for file:///C:/New_work_space/TAX_SOAP/dbtax.wsdl.
+Parsing wsdl binding {http://www.example.org/dbtax/}dbtaxSOAP.
+Parsing wsdl binding input NewOperation.
+Parsing wsdl binding output NewOperation.
+Processing doc style for operation NewOperation.
+Populating WSDL schema dbtax.xsd.
+Creating file dbtax.xsd in the workspace.
+Creating file dbtax_InlineSchema1.xsd in the workspace.
+Copying source WSDL dbtax.wsdl to dbtax.wsdl.
+
+Elapsed time processing this message definition file: 1.406 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+
