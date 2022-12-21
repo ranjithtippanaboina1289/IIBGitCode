@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE deleteDeleteEmp_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inRef REFERENCE TO InputRoot.XMLNSC.EMP;
+		DECLARE eid REFERENCE TO inRef.EID;
+		DELETE FROM Database.EMPLOYEE AS E  WHERE E.EID=eid;
+		IF SQLCODE=0 THEN
+			SET OutputRoot.JSON.Data.rec='Deleted record successfully';
+		ELSE
+			SET OutputRoot.JSON.Data.rec='Deleted record not successfull';
+		END IF;
+	END;
+END MODULE;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="openapi_3" definitionFile="openapi.json" implementation="gen/Open_Api.msgflow" https="false" definitionWithExtRef="false" faultFormat="JSON">
+    <ns2:operations>
+        <ns2:operation name="deleteDeleteEmp" implementation="deleteDeleteEmp.subflow"/>
+        <ns2:operation name="getGetEmp" implementation="getGetEmp.subflow"/>
+        <ns2:operation name="postAddEmp" implementation="postAddEmp.subflow"/>
+        <ns2:operation name="putUpdateEmp" implementation="putUpdateEmp.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers/>
+</ns2:restapiDescriptor>
