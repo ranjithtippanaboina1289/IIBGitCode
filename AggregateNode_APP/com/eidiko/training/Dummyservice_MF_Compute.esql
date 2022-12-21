@@ -1,0 +1,23 @@
+BROKER SCHEMA com.eidiko.training
+
+
+CREATE COMPUTE MODULE Dummyservice_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 SET OutputRoot.JSON.Data.Flight_Details.flight_name='Luftansa';
+		SET OutputRoot.JSON.Data.Flight_Details.flight_id='L12345';
+		SET OutputRoot.JSON.Data.Flight_Details.Date='25-03-2022';
+		 --CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

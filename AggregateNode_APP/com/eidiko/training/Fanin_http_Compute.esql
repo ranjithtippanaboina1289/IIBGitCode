@@ -1,0 +1,26 @@
+BROKER SCHEMA com.eidiko.training
+
+
+CREATE COMPUTE MODULE Fanin_http_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		DECLARE flightRef REFERENCE TO InputRoot.ComIbmAggregateReplyBody.flight_details.JSON.Data.Flight_Details;
+		DECLARE cabRef REFERENCE TO InputRoot.ComIbmAggregateReplyBody.cab_details.JSON.Data.Cab_details;
+		Set OutputRoot.JSON.Data.Item[1].flight_name=flightRef.flight_name;
+		Set OutputRoot.JSON.Data.Item[1].flight_id=flightRef.flight_id;
+		Set OutputRoot.JSON.Data.Item[1].Date=flightRef.Date;
+		Set OutputRoot.JSON.Data.Item[1].cab_name=cabRef.cab_name;
+		Set OutputRoot.JSON.Data.Item[1].passenger_name=cabRef.passenger_name;
+		Set OutputRoot.JSON.Data.Item[1].Date=cabRef.Date;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+	
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
