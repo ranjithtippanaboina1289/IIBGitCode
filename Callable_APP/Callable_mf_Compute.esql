@@ -1,0 +1,15 @@
+
+
+CREATE COMPUTE MODULE Callable_mf_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.JSON.Data.empName = InputRoot.XMLNSC.Employee.name;
+	END;
+END MODULE;
