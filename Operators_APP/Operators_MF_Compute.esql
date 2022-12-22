@@ -1,0 +1,47 @@
+
+
+CREATE COMPUTE MODULE Operators_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+--	DECLARE A,B,C,D INTEGER;
+--	SET A=20;
+--	SET B=23;
+--	SET C=40;
+--	SET D=35;
+--	IF A>B THEN set B=A+B;
+--	END IF;
+--	IF B>C THEN set C=B+C;
+--	END IF;
+--	IF C>D THEN set D=C+D;
+--	END IF;
+--
+--  DECLARE D1 DATE '2022-07-11';
+--  DECLARE D2 DATE '2022-07-22';
+--  DECLARE D3 DATE '2022-07-11';
+-- DECLARE res1,res2,res3 CHARACTER;
+-- IF D1<D2 THEN Set res1=cast(D1 AS CHARACTER) || 'is lessthan ' || cast(D2 AS CHARACTER);
+-- END IF;
+-- IF D1>D2 THEN Set res2=cast(D1 AS CHARACTER) || 'is greaterthan ' || cast(D2 AS CHARACTER);
+-- END IF;
+--	
+--	IF D1=D3 THEN Set res3='Equal';
+--		
+--	END IF;
+
+DECLARE ref REFERENCE TO InputRoot.XMLNSC.customer.items;
+DECLARE item1,item2,item3 CHARACTER;
+SET item1=ref.item[1].name;
+SET item2=ref.item[2].name;
+
+SET item3=ref.item[3].name;
+
+	END;
+END MODULE;
