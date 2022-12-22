@@ -1,0 +1,88 @@
+
+
+Importing file: C:\New_work_space\COBOL_APP\importFiles\RecordCobal.cbl
+
+CTDI0234E Error occurred while importing file "RecordCobal.cbl".
+The source file contains errors, details are: Possible reasons for failure:
+1. Syntax errors were found in the source. If the file is from the workspace, check the 'Problems' view for the list of errors.
+2. RecordCobal.cbl is expected to be a complete COBOL program, based on its file extension.You can change the file extension support by going into the "More COBOL options" tab of the COBOL importer preferences page (Window -> Preferences -> Importer -> COBOL). Please correct the error and try importing the file again.
+CTDI0234E Error occurred while importing file "RecordCobal.cbl".
+The source file contains errors, details are: Possible reasons for failure:
+1. Syntax errors were found in the source. If the file is from the workspace, check the 'Problems' view for the list of errors.
+2. RecordCobal.cbl is expected to be a complete COBOL program, based on its file extension.You can change the file extension support by going into the "More COBOL options" tab of the COBOL importer preferences page (Window -> Preferences -> Importer -> COBOL).
+Line No : 1  IGYDS1000-E A "IDENTIFICATION DIVISION" header was not found in this program.  It was assumed present.
+Line No : 1  IGYDS1003-E A "PROGRAM-ID" paragraph was not found.  Program-name "CBLNAM01" was assumed.
+Line No : 1  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 1  IGYDS0009-E "ECORD" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 1  IGYDS1089-S "ECORD" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 2  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 2  IGYDS0009-E "IM-NUMBER" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 2  IGYDS1089-S "IM-NUMBER" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 3  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 3  IGYDS0009-E "ISSION-DATE" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 3  IGYDS1089-S "ISSION-DATE" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 4  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 4  IGYDS0009-E "M-DATE" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 4  IGYDS1089-S "M-DATE" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 5  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 5  IGYDS0009-E "U-DATE" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 5  IGYDS1089-S "U-DATE" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 5  IGYDS0001-W A blank was missing before character "+" in column 59.  A blank was assumed.
+Line No : 5  IGYDS1089-S "063" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 6  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 6  IGYDS0009-E "HARGE-DATE" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 7  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 7  IGYDS0009-E "L-DAYS" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 7  IGYDS1089-S "L-DAYS" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 8  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 8  IGYDS0009-E "NSURANCE-DAYS" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 8  IGYDS1089-S "NSURANCE-DAYS" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 9  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 9  IGYDS0009-E "ETIME-RES-DAYS" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 9  IGYDS1089-S "ETIME-RES-DAYS" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 10  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 10  IGYDS0009-E "ERMEDIARY-NUM" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 10  IGYDS1089-S "ERMEDIARY-NUM" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 11  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 11  IGYDS0009-E "VIDER" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 11  IGYDS1089-S "VIDER" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 12  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 12  IGYDS0009-E "ATIENT-DED" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 12  IGYDS1089-S "ATIENT-DED" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 13  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 13  IGYDS0009-E "OD-DED" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 13  IGYDS1089-S "OD-DED" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 14  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 14  IGYDS0009-E "AL-CHARGES" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 14  IGYDS1089-S "AL-CHARGES" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 15  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 15  IGYDS0009-E "IENT-STATUS" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 15  IGYDS1089-S "IENT-STATUS" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 16  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 16  IGYDS0009-E "OD-PINTS-FURNISHED" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 16  IGYDS1089-S "OD-PINTS-FURNISHED" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 17  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 17  IGYDS0009-E "OD-PINTS-REPLACED" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 17  IGYDS1089-S "OD-PINTS-REPLACED" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 18  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 18  IGYDS0009-E "UENCE-COUNTER" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 18  IGYDS1089-S "UENCE-COUNTER" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 19  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 19  IGYDS0009-E "NSACTION-IND" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 19  IGYDS1089-S "NSACTION-IND" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 20  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 20  IGYDS0009-E "L-SOURCE" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 20  IGYDS1089-S "L-SOURCE" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 21  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 21  IGYDS0009-E "EFITS-EXHAUST-IND" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 21  IGYDS1089-S "EFITS-EXHAUST-IND" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 22  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 22  IGYDS0009-E "EFITS-PAY-IND" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 22  IGYDS1089-S "EFITS-PAY-IND" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 23  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 23  IGYDS0009-E "O-ADJUSTMENT-IND" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 23  IGYDS1089-S "O-ADJUSTMENT-IND" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+Line No : 24  IGYDS0002-E A character other than "*", "D", "/" or "-" was found in column 7.  A blank was assumed.
+Line No : 24  IGYDS0009-E "ERMEDIARY-CTRL-NUM" should not begin in area "A".  It was processed as if found in area "B".
+Line No : 24  IGYDS1089-S "ERMEDIARY-CTRL-NUM" was invalid.  Scanning was resumed at the next area "A" item, level-number, or the start of the next clause.
+ Please correct the error and try importing the file again.
