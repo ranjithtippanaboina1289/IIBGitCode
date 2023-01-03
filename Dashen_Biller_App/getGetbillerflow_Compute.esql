@@ -1,0 +1,47 @@
+
+DECLARE SOAP_ENV NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+DECLARE SOAP_ENC NAMESPACE 'http://schemas.xmlsoap.org/soap/encoding/';
+DECLARE FC1 NAMESPACE 'http://payment.ecom.flocash.com/';
+CREATE COMPUTE MODULE getGetbillerflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.(XMLNSC.NamespaceDecl)xmlns:SOAP_ENV=SOAP_ENV;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentInquiry.(XMLNSC.Attribute)xmlns:FC1=FC1;
+		--DECLARE inref REFERENCE TO InputRoot.JSON.Data.Request.ApplicationTagName;
+		DECLARE inref1 REFERENCE TO InputRoot.JSON.Data.Request.paymentInquiry;
+		DECLARE inref2 REFERENCE TO InputRoot.JSON.Data.Request.BODY;
+		DECLARE inref3 REFERENCE TO InputRoot.JSON.Data.Mandatory_Fields; 
+		
+		DECLARE service_type ,ser_type CHARACTER ;
+		SET service_type= inref3.Service_Type;
+		DECLARE query CHARACTER 'select BACKEND_URL from DASHEN_SERVICE_LIST WHERE SERVICE_TYPE = ?';
+		SET Environment.Variable.res = PASSTHRU( query.RANDB values (service_type));
+
+		SET ser_type= Environment.Variable.res.BACKEND_URL;
+		
+		
+		
+        	CASE
+        		
+        	WHEN service_type='PaymentInquiry' THEN
+        	SET OutputLocalEnvironment.Destination.HTTP.RequestURL = ser_type ;
+        	 
+        	ELSE
+        		SET OutputLocalEnvironment.Destination.HTTP.RequestURL ='url not found';
+        		
+        	END CASE;
+		    SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentInquiry.*:username=inref1.username;
+		    SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentInquiry.*:password=inref1.password;
+		    SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentInquiry.*:pnr=inref1.pnr;
+
+		
+	END;
+END MODULE;

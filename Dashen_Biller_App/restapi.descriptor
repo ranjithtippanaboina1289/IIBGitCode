@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/Dashen_Biller_App.msgflow" https="false" definitionWithExtRef="false" faultFormat="JSON">
+    <ns2:operations>
+        <ns2:operation name="getGetCreateTransaction" implementation="getGetCreateTransaction.subflow"/>
+        <ns2:operation name="getGetPaymentConfirm" implementation="getGetPaymentConfirm.subflow"/>
+        <ns2:operation name="getGetbillerflow" implementation="getGetbillerflow.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers>
+        <ns2:errorHandler type="CATCH" implementation="Dashen_Biller_AppInputCatchHandler.subflow"/>
+        <ns2:errorHandler type="FAILURE" implementation="Dashen_Biller_AppInputFailureHandler.subflow"/>
+        <ns2:errorHandler type="TIMEOUT" implementation="Dashen_Biller_AppInputTimeoutHandler.subflow"/>
+    </ns2:errorHandlers>
+</ns2:restapiDescriptor>

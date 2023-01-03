@@ -1,0 +1,65 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Dashen_Biller_App",
+    "version" : "1.0.0",
+    "description" : "Dashen_Biller_App"
+  },
+  "paths" : {
+    "/getbillerflow" : {
+      "get" : {
+        "operationId" : "getGetbillerflow",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve getbillerflow",
+        "parameters" : [ {
+          "name" : "param1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "param2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/getCreateTransaction" : {
+      "get" : {
+        "operationId" : "getGetCreateTransaction",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve getCreateTransaction"
+      }
+    },
+    "/getPaymentConfirm" : {
+      "get" : {
+        "operationId" : "getGetPaymentConfirm",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve getPaymentConfirm"
+      }
+    }
+  },
+  "basePath" : "/dashen_biller_app/v1"
+}

@@ -1,0 +1,43 @@
+
+
+CREATE COMPUTE MODULE getGetbillerflow_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inref REFERENCE TO InputRoot.*:XMLNSC.*:Envelope.*:Body.*:paymentInquiryResponse.*:return;
+		SET OutputRoot.JSON.Data.Response.ApplicationTagName='EithopianAirline';
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.status=inref.*:status;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.statusDesc=inref.*:statusDesc;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.amount=inref.*:amount;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.currency=inref.*:currency;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.reference=inref.*:reference;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.pnr=inref.*:pnr;
+		CREATE FIELD OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter IDENTITY(JSON.Array);
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[1].name=inref.*:parameter[1].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[1].value=inref.*:parameter[1].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[2].name=inref.*:parameter[2].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[2].value=inref.*:parameter[2].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[3].name=inref.*:parameter[3].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[3].value=inref.*:parameter[3].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[4].name=inref.*:parameter[4].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[4].value=inref.*:parameter[4].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[5].name=inref.*:parameter[5].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[5].value=inref.*:parameter[5].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[6].name=inref.*:parameter[6].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[6].value=inref.*:parameter[6].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[7].name=inref.*:parameter[7].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[7].value=inref.*:parameter[7].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[8].name=inref.*:parameter[8].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[8].value=inref.*:parameter[8].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[9].name=inref.*:parameter[9].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[9].value=inref.*:parameter[9].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[10].name=inref.*:parameter[10].*:name;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.parameter.item[10].value=inref.*:parameter[10].*:value;
+		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.success=inref.*:success;
+	END;END MODULE;

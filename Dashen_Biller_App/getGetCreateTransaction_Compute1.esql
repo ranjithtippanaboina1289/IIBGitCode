@@ -1,0 +1,89 @@
+
+
+CREATE COMPUTE MODULE getGetCreateTransaction_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE ref REFERENCE TO InputRoot.*:XMLNSC.*:Envelope.*:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER;
+		DECLARE ref1 REFERENCE TO InputRoot.*:XMLNSC.*:Envelope.*:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details;
+		SET OutputRoot.JSON.Data.Response.ApplicationTagName='EithopianAirline';
+		SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.SOURCE=ref.*:SOURCE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.UBSCOMP=ref.*:UBSCOMP;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.MSGID=ref.*:MSGID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.CORRELID=ref.*:CORRELID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.USERID=ref.*:USERID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.ENTITY=ref.*:ENTITY;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.BRANCH=ref.*:BRANCH;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.MODULEID=ref.*:MODULEID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.SERVICE=ref.*:SERVICE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.SOURCE_OPERATION=ref.*:SOURCE_OPERATION;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.DESTINATION=ref.*:DESTINATION;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.FUNCTIONID=ref.*:FUNCTIONID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.ACTION=ref.*:ACTION;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.HEADER.MSGSTAT=ref.*:MSGSTAT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.XREF=ref1.*:XREF;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.FCCREF=ref1.*:FCCREF;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.PRD=ref1.*:PRD;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.BRN=ref.*:BRN;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNBRN=ref1.*:TXNBRN;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNACC=ref1.*:TXNACC;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNCCY=ref1.*:TXNCCY;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNAMT=ref1.*:TXNAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNTRN=ref1.*:TXNTRN;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.OFFSETBRN=ref1.*:OFFSETBRN;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.OFFSETACC=ref1.*:OFFSETACC;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.OFFSETCCY=ref1.*:OFFSETCCY;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.OFFSETAMT=ref1.*:OFFSETAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.OFFSETTRN=ref1.*:OFFSETTRN;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.XRATE=ref1.*:XRATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.LCYAMT=ref1.*:LCYAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNDATE=ref1.*:TXNDATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.VALDATE=ref1.*:VALDATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.RELCUST=ref1.*:RELCUST;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TCYCHGAMT=ref1.*:TCYCHGAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TCYTOTCHGAMT=ref1.*:TCYTOTCHGAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.NARRATIVE=ref1.*:NARRATIVE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TRACKREVERSE=ref1.*:TRACKREVERSE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.LCYXRATE=ref1.*:LCYXRATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.MAKERID=ref1.*:MAKERID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.MAKERSTAMP=ref1.*:MAKERSTAMP;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.CHECKERID=ref1.*:CHECKERID;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.CHECKERSTAMP=ref1.*:CHECKERSTAMP;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.RECSTAT=ref1.*:RECSTAT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.AUTHSTAT=ref1.*:AUTHSTAT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.LCYCHGAMT=ref1.*:LCYCHGAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.DRACC=ref1.*:DRACC;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.TXNDRCR=ref1.*:TXNDRCR;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.BOOKDATE=ref1.*:BOOKDATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.FT=ref1.*:FT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.LCYTOTCHGAMT=ref1.*:LCYTOTCHGAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.DENMCCY1=ref1.*:DENMCCY1;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.DENMAMT1=ref1.*:DENMAMT1;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.DENMAMT2=ref1.*:DENMAMT2;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.ACCTITLE1=ref1.*:ACCTITLE1;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.ACCTITLE2=ref1.*:ACCTITLE2;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.ACTAMT=ref1.*:ACTAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.CHRACC=ref1.*:CHRACC;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.CUSTNAME=ref1.*:CUSTNAME;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.CHGCOMP=ref1.*:Charge_Details.*:CHGCOMP;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.CHGAMT=ref1.*:Charge_Details.*:CHGAMT;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.CHGCCY=ref1.*:Charge_Details.*:CHGCCY;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.MISHEAD=ref1.*:Charge_Details.*:MISHEAD;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.TXNCODE=ref1.*:Charge_Details.*:TXNCODE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.NETTINGIND=ref1.*:Charge_Details.*:NETTINGIND;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.CHGGL=ref1.*:Charge_Details.*:CHGGL;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.TYPE=ref1.*:Charge_Details.*:TYPE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.LCYCHG=ref1.*:Charge_Details.*:CHGCOMP;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.Charge_Details.XRATE=ref1.*:Charge_Details.*:XRATE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.FCUBS_WARNING_RESP.WARNING.WCODE=ref1.*:FCUBS_WARNING_RESP.*:WARNING.*:WCODE;
+        SET OutputRoot.JSON.Data.Response.CREATETRANSACTION_FSFS_RES.BODY.Transaction_Details.FCUBS_WARNING_RESP.WARNING.WDESC=ref1.*:FCUBS_WARNING_RESP.*:WARNING.*:WDESC;
+	END;
+END MODULE;
+
+

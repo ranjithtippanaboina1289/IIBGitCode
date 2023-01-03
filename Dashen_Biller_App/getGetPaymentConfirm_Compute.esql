@@ -1,0 +1,42 @@
+
+
+CREATE COMPUTE MODULE getGetPaymentConfirm_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.(XMLNSC.NamespaceDecl)xmlns:SOAP_ENV=SOAP_ENV;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.(XMLNSC.Attribute)xmlns:FC1=FC1;
+		--DECLARE inref REFERENCE TO InputRoot.JSON.Data.Request.ApplicationTagName;
+		DECLARE inref1 REFERENCE TO InputRoot.JSON.Data.Request.paymentConfirmV2;
+		DECLARE inref2 REFERENCE TO InputRoot.JSON.Data.Request.BODY;
+		--SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns1:CREATEAMTBLK_IOPK_REQ.(XMLNSC.Attribute)xmlns:ns1=ns1;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:username=inref1.username;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:password=inref1.password;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:pnr=inref1.pnr;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:partner_txn=inref1.partner_txn;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:amount=inref1.amount;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:currency=inref1.currency;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:status=inref1.status;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FC1:paymentConfirmV2.*:message=inref1.message;
+		DECLARE inref4 REFERENCE TO InputRoot.JSON.Data.Mandatory_Fields;
+		DECLARE service_type ,ser_type CHARACTER ;
+		SET service_type= inref4.Service_Type;
+		DECLARE query CHARACTER 'select BACKEND_URL from DASHEN_SERVICE_LIST WHERE SERVICE_TYPE = ?';
+		SET Environment.Variable.res2 = PASSTHRU( query.RANDB values (service_type));
+		SET ser_type= Environment.Variable.res2.BACKEND_URL;
+		CASE
+			
+		WHEN service_type='PaymentConfirm' THEN
+			SET OutputLocalEnvironment.Destination.HTTP.RequestURL = ser_type ; 
+		ELSE
+			SET OutputLocalEnvironment.Destination.HTTP.RequestURL ='url not found';
+		END CASE;
+	END;
+END MODULE;
