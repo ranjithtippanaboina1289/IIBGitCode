@@ -1,0 +1,25 @@
+
+
+CREATE COMPUTE MODULE soap_payment_mf_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inref REFERENCE TO InputRoot.SOAP.*:Body.*:paymentConfirmV2;
+	SET OutputRoot.XMLNSC.S:Envelope.(XMLNSC.NamespaceDecl)xmlns:S=S;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.(XMLNSC.Attribute)xmlns:ns2=ns2;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:username=inref.username;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:password=inref.password;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:pnr=inref.pnr;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:partner_txn=inref.partner_txn;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:amount=inref.amount;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:currency=inref.currency;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:status=inref.status;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentConfirmV2Response.*:return.*:message=inref.message;
+	END;
+END MODULE;

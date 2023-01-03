@@ -1,0 +1,48 @@
+DECLARE S NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+DECLARE ns2 NAMESPACE 'http://payment.ecom.flocash.com/';
+
+CREATE COMPUTE MODULE soap_biller_mf_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+	DECLARE inref REFERENCE TO InputRoot.SOAP.*:Body.*:paymentInquiry;
+	SET OutputRoot.XMLNSC.S:Envelope.(XMLNSC.NamespaceDecl)xmlns:S=S;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.(XMLNSC.Attribute)xmlns:ns2=ns2;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:status='0004';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:statusDesc='Payment is pending.';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:amount='2788.00';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:currency='ETB';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:reference='04008022';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:pnr=inref.*:pnr;
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[1].*:name='merchant.businessName';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[1].*:value='Ethiopian Airlines - Mobile';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[2].*:name='merchant.email';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[2].*:value='et_mobile@flocash.com';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[3].*:name='merchant.merchantId';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[3].*:value='Flocash';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[4].*:name='merchant.merchantCode';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[4].*:value='';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[5].*:name='payer.email';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[5].*:value='elulbenidave@gmail.com';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[6].*:name='payer.mobile';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[6].*:value='251912927849';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[7].*:name='payer.fname';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[7].*:value='MERON';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[8].*:name='payer.lname';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[8].*:value='ABDOSH';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[9].*:name='order.tracenumber';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[9].*:value='T12800866382078';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[10].*:name='order.floec';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:parameter[10].*:value='FLOEC2203297304008022';
+	SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.*:return.*:success='true';
+	
+	
+	END;
+END MODULE;
+
+

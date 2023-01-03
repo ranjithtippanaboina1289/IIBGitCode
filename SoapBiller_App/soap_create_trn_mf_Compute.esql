@@ -1,0 +1,92 @@
+
+
+CREATE COMPUTE MODULE soap_create_trn_mf_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE inref REFERENCE TO InputRoot.SOAP.*:Body.*:CREATETRANSACTION_FSFS_REQ.*:FCUBS_HEADER;
+		DECLARE inref1 REFERENCE TO InputRoot.SOAP.*:Body.*:CREATETRANSACTION_FSFS_REQ.*:FCUBS_BODY.Transaction_Details;
+		SET OutputRoot.XMLNSC.S:Envelope.(XMLNSC.NamespaceDecl)xmlns:S=S;
+		--SET OutputRoot.XMLNSC.S:Envelope.S:Body.ns2:paymentInquiryResponse.(XMLNSC.Attribute)xmlns:ns2=ns2;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:SOURCE=inref.*:SOURCE;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:UBSCOMP=inref.*:UBSCOMP;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:MSGID=inref.*:MSGID;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:CORRELID=inref.*:CORRELID;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:USERID=inref.*:USERID;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:ENTITY='null';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:BRANCH=inref.*:BRANCH;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:MODULEID=inref.*:MODULEID;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:SERVICE=inref.*:SERVICE;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:OPERATION=inref.*:OPERATION;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:SOURCE_OPERATION=inref.*:SOURCE_OPERATION;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:DESTINATION='IBEXT1';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:FUNCTIONID='DEGRTTLR';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:ACTION='NEW';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_HEADER.*:MSGSTAT=inref.*:MSGSTAT;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:XREF=inref1.*:XREF;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:FCCREF='415OABP220880001';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:PRD=inref1.*:PRD;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:BRN=inref1.*:BRN;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNBRN=inref1.*:TXNBRN;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNACC=inref1.*:TXNACC;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNCCY=inref1.*:TXNCCY;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNAMT=inref1.*:TXNAMT;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNTRN=inref1.*:TXNTRN;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:OFFSETBRN=inref1.*:OFFSETBRN;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:OFFSETACC=inref1.*:OFFSETACC;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:OFFSETCCY=inref1.*:OFFSETCCY;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:OFFSETAMT=inref1.*:OFFSETAMT;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:OFFSETTRN=inref1.*:OFFSETTRN;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:XRATE='1';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:LCYAMT='2788';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNDATE=inref1.*:TXNDATE;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:VALDATE=inref1.*:VALDATE;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:RELCUST='415248967';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TCYCHGAMT=inref1.*:TCYCHGAMT;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TCYTOTCHGAMT='13.94';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:NARRATIVE=inref1.*:XREF;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TRACKREVERSE='N';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:LCYXRATE='1';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:MAKERID='IBEXTUSR';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:MAKERSTAMP='2022-03-29 08:51:09 AM';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:CHECKERID='IBEXTUSR';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:CHECKERSTAMP='2022-03-29 08:51:10 AM';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:RECSTAT='A';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:AUTHSTAT='A';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:LCYCHGAMT=inref1.*:XREF;
+		--SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:CHGLCYXRATE=inref1.*:CHGLCYXRATE;
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:DRACC='TXN';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:TXNDRCR='D';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:BOOKDATE='2022-03-29';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:FT='N';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:LCYTOTCHGAMT='13.94';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:DENMCCY1='ETB';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:DENMAMT1='2788';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:DENMAMT2='2788';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:ACCTITLE1='DAWIT BENEYAM DEMEKE';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:ACCTITLE2='ETHIOPIAN AIRLINES ENTERPRISE';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:ACTAMT='2801.94';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:CHRACC='5415248967011';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:CUSTNAME='DAWIT BENEYAM DEMEKE';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:CHGCOMP='Online Airlines bill charge';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:CHGAMT='13.94';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:CHGCCY='ETB';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:MISHEAD='MISINC';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:TXNCODE='350';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:NETTINGIND='N';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:CHGGL='430190002';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:TYPE='P';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:LCYCHG='13.94';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:Charge_Details.*:XRATE='1';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:FCUBS_WARNING_RESP.*:WARNING.*:WCODE='GW-SAV-03';
+		SET OutputRoot.XMLNSC.S:Envelope.S:Body.*:CREATETRANSACTION_FSFS_RES.*:FCUBS_BODY.*:Transaction_Details.*:FCUBS_WARNING_RESP.*:WARNING.*:WDESC='Transaction completed Succesfully';
+		
+		
+		
+	END;
+END MODULE;
