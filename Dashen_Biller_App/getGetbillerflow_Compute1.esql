@@ -42,16 +42,21 @@ CREATE COMPUTE MODULE getGetbillerflow_Compute1
 		SET OutputRoot.JSON.Data.Response.paymentInquiryResponse.return.success=inref.*:success;
 		DECLARE Msg_id,IP,Channel_Req,Host_Req,Host_Res,Channel_Res,App_Name,MsgFlowName  CHARACTER;
 		DECLARE t_stamp TIMESTAMP;
+		
 		SET App_Name=ApplicationLabel;
 		SET MsgFlowName=MessageFlowLabel;
 		SET t_stamp=CURRENT_TIMESTAMP;
 		
-		SET IP='192.168.2.87';
-		DECLARE var1,var2,var3 ROW;
+		
+		DECLARE var1,var2,var3,var4 ROW;
 		SET var1=Environment.Variable.Result1;
 		SET var2=Environment.Variable.Result2;
 		SET var3=Environment.Variable.id;
+		
+		SET var4=Environment.Variable.ipAddress;
         SET Channel_Req =var1;
+		SET IP=var4;
+		
 		
 	    SET Host_Req =var2;
 		

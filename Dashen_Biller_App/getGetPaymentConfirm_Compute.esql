@@ -46,7 +46,15 @@ CREATE COMPUTE MODULE getGetPaymentConfirm_Compute
 	         DECLARE ht_req BLOB ASBITSTREAM(OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body ENCODING 546 CCSID 1208);
 	  DECLARE host_req CHARACTER CAST (ht_req AS CHARACTER CCSID 1208);
 	  SET Environment.Variable.Result2=host_req;
-	  
+	 
+	  --ip--
+	  DECLARE ip1 CHARACTER InputLocalEnvironment.REST.Input.URI;
+		DECLARE ip_add CHARACTER SUBSTRING(ip1 AFTER 'http://');
+		DECLARE ip_address CHARACTER SUBSTRING (ip_add BEFORE ':');
+		SET Environment.Variable.ipAddress=ip_address;
+	 
+	 
+	 --req--ide 
 	 DECLARE id CHARACTER ;
 	 SET id=CAST(InputLocalEnvironment.Destination.HTTP.RequestIdentifier AS CHARACTER);
 	 SET Environment.Variable.id=id;

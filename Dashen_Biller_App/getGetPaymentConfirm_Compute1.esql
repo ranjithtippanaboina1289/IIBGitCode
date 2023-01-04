@@ -27,15 +27,16 @@ CREATE COMPUTE MODULE getGetPaymentConfirm_Compute1
 		SET MsgFlowName=MessageFlowLabel;
 		SET t_stamp=CURRENT_TIMESTAMP;
 		
-		SET IP='192.168.2.87';
-		DECLARE var1,var2,var3 ROW;
+	
+		DECLARE var1,var2,var3,var4 ROW;
 		SET var1=Environment.Variable.Result1;
 		SET var2=Environment.Variable.Result2;
 		SET var3=Environment.Variable.id;
+		SET var4=Environment.Variable.ipAddress;
         SET Channel_Req =var1;
 		
 	    SET Host_Req =var2;
-		
+		SET IP=var4;
 		SET Msg_id=var3;
 		
 		

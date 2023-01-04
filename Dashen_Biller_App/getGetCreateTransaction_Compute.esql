@@ -20,6 +20,7 @@ CREATE COMPUTE MODULE getGetCreateTransaction_Compute
 		
 		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:SOURCE=inref1.*:SOURCE;
 		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:UBSCOMP=inref1.*:UBSCOMP;
+		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:MSGID=inref1.*:MSGID;
 		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:CORRELID=inref1.*:CORRELID;
 		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:USERID=inref1.*:USERID;
 		SET OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body.FLEX3:CREATETRANSACTION_FSFS_REQ.FLEX3:FCUBS_HEADER.FLEX3:BRANCH=inref1.*:BRANCH;
@@ -59,7 +60,7 @@ CREATE COMPUTE MODULE getGetCreateTransaction_Compute
 		ELSE
 			SET OutputLocalEnvironment.Destination.HTTP.RequestURL ='url not found';
 		END CASE;
-		--dblog--
+		--ch_req--
 		 DECLARE ch_req BLOB ASBITSTREAM(InputRoot.JSON.Data ENCODING 546 CCSID 1208);
 	  DECLARE cha_req CHARACTER CAST (ch_req AS CHARACTER CCSID 1208);
 	  SET Environment.Variable.Result1=cha_req;
@@ -68,6 +69,14 @@ CREATE COMPUTE MODULE getGetCreateTransaction_Compute
 	  DECLARE host_req CHARACTER CAST (ht_req AS CHARACTER CCSID 1208);
 	  SET Environment.Variable.Result2=host_req;
 	  
+	  --ip--
+	  DECLARE ip1 CHARACTER InputLocalEnvironment.REST.Input.URI;
+		DECLARE ip_add CHARACTER SUBSTRING(ip1 AFTER 'http://');
+		DECLARE ip_address CHARACTER SUBSTRING (ip_add BEFORE ':');
+		SET Environment.Variable.ipAddress=ip_address;
+	  
+	  
+	  --req_identifier--
 	 DECLARE id CHARACTER ;
 	 SET id=CAST(InputLocalEnvironment.Destination.HTTP.RequestIdentifier AS CHARACTER);
 	 SET Environment.Variable.id=id;
