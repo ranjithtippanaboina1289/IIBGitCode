@@ -20,5 +20,42 @@ CREATE COMPUTE MODULE getGetPaymentConfirm_Compute1
 		SET OutputRoot.JSON.Data.Response.paymentConfirmV2Response.return.currency=inref.*:currency;
 		SET OutputRoot.JSON.Data.Response.paymentConfirmV2Response.return.status=inref.*:status;
 		SET OutputRoot.JSON.Data.Response.paymentConfirmV2Response.return.message=inref.*:message;
+		
+		DECLARE Msg_id,IP,Channel_Req,Host_Req,Host_Res,Channel_Res,App_Name,MsgFlowName  CHARACTER;
+		DECLARE t_stamp TIMESTAMP;
+		SET App_Name=ApplicationLabel;
+		SET MsgFlowName=MessageFlowLabel;
+		SET t_stamp=CURRENT_TIMESTAMP;
+		
+		SET IP='192.168.2.87';
+		DECLARE var1,var2,var3 ROW;
+		SET var1=Environment.Variable.Result1;
+		SET var2=Environment.Variable.Result2;
+		SET var3=Environment.Variable.id;
+        SET Channel_Req =var1;
+		
+	    SET Host_Req =var2;
+		
+		SET Msg_id=var3;
+		
+		
+		DECLARE ht_res BLOB ASBITSTREAM(InputRoot.*:XMLNSC.*:Envelope.*:Body ENCODING 546 CCSID 1208);
+	  DECLARE host_res CHARACTER CAST (ht_res AS CHARACTER CCSID 1208);
+	
+		
+		SET Host_Res=host_res;
+		
+		
+	         DECLARE ch_res BLOB ASBITSTREAM(OutputRoot.JSON.Data ENCODING 546 CCSID 1208);
+	  DECLARE cha_res CHARACTER CAST (ch_res AS CHARACTER CCSID 1208);
+		
+		
+		SET Channel_Res=cha_res;
+		CALL DASHEN_DBLOGS_PROCEDURE2(Msg_id,IP,Channel_Req,Host_Req,Host_Res,Channel_Res,App_Name,MsgFlowName,t_stamp);
 	END;
-END MODULE;
+	END MODULE;
+
+	CREATE PROCEDURE DASHEN_DBLOGS_PROCEDURE2(IN Msg_id CHARACTER,IN IP CHARACTER,IN Channel_Req CHARACTER,IN Host_Req CHARACTER,IN Host_Res CHARACTER,IN Channel_Res CHARACTER,IN App_Name CHARACTER,IN MsgFlowName CHARACTER,IN t_stamp TIMESTAMP  )
+	LANGUAGE DATABASE
+	EXTERNAL NAME "DASHEN_DBLOGS_PROC";
+

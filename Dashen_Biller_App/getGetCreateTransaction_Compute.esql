@@ -59,6 +59,20 @@ CREATE COMPUTE MODULE getGetCreateTransaction_Compute
 		ELSE
 			SET OutputLocalEnvironment.Destination.HTTP.RequestURL ='url not found';
 		END CASE;
-		
+		--dblog--
+		 DECLARE ch_req BLOB ASBITSTREAM(InputRoot.JSON.Data ENCODING 546 CCSID 1208);
+	  DECLARE cha_req CHARACTER CAST (ch_req AS CHARACTER CCSID 1208);
+	  SET Environment.Variable.Result1=cha_req;
+	        --host_req--
+	         DECLARE ht_req BLOB ASBITSTREAM(OutputRoot.XMLNSC.SOAP_ENV:Envelope.SOAP_ENV:Body ENCODING 546 CCSID 1208);
+	  DECLARE host_req CHARACTER CAST (ht_req AS CHARACTER CCSID 1208);
+	  SET Environment.Variable.Result2=host_req;
+	  
+	 DECLARE id CHARACTER ;
+	 SET id=CAST(InputLocalEnvironment.Destination.HTTP.RequestIdentifier AS CHARACTER);
+	 SET Environment.Variable.id=id;
+	  
+	    
+            
 	END;
 END MODULE;

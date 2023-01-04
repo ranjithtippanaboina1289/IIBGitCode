@@ -12,10 +12,10 @@
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="642,36">
         <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getGetbillerflow" pluginId="Dashen_Biller_App"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="113,27" dataSource="RAND" computeExpression="esql://routine/#getGetbillerflow_Compute.Main" computeMode="all">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="113,27" dataSource="RANDB" computeExpression="esql://routine/#getGetbillerflow_Compute.Main" computeMode="all">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="469,34" computeExpression="esql://routine/#getGetbillerflow_Compute1.Main">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="469,34" dataSource="RANDB" computeExpression="esql://routine/#getGetbillerflow_Compute1.Main">
         <translation xmi:type="utility:ConstantString" string="Compute1"/>
       </nodes>
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="256,30" URLSpecifier="http://localhost:7800/billerurll" httpVersion="1.1" protocol="TLS" messageDomainProperty="XMLNSC">
